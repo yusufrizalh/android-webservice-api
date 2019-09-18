@@ -1,6 +1,7 @@
 package id.inixindosurabaya.androidwebservice;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -107,6 +108,10 @@ public class LihatData extends AppCompatActivity implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent myIntent = new Intent(LihatData.this, LihatDetail.class);
+        HashMap<String, String> map = (HashMap)parent.getItemAtPosition(position);
+        String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
+        myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
+        startActivity(myIntent);
     }
 }

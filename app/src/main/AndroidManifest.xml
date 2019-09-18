@@ -21,6 +21,7 @@
         </activity>
 
         <activity android:name=".LihatData" />
+        <activity android:name=".LihatDetail" />
     </application>
 
 </manifest>
