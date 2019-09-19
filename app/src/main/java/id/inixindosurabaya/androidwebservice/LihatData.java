@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +30,8 @@ public class LihatData extends AppCompatActivity implements AdapterView.OnItemCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_data);
+        // memunculkan icon back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // mengenali komponen
         listView = findViewById(R.id.list_view);
@@ -35,6 +39,17 @@ public class LihatData extends AppCompatActivity implements AdapterView.OnItemCl
 
         // membuat perintah untuk mengambil data JSON
         getJSON();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(LihatData.this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return true;
     }
 
     private void getJSON() {
